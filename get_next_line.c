@@ -6,7 +6,7 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:21:34 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/13 11:28:20 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:45:10 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,25 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = read_file(fd, file);
+	buffer = ft_read_file(fd, file);
 	if (!file)
 		return (NULL);
 	line = ft_line(file);
 	file = ft_upfile(file);
 	return (line);
+}
+
+static char	*ft_read_file(int fd, char *file)
+{
+	char	*buffer;
+
+	if (!file || fd < 0)
+		return (NULL);
+	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	while (!ft_strchr(file, '\n') && file[i])
+	{
+		bufer[i] = 
+	}
 }
