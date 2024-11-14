@@ -6,7 +6,7 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:40:39 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/14 17:18:33 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:22:31 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,14 @@ static char	*ft_read(int fd, char *file)
 	return (file);
 }
 
-static char	*ft_get_line(char *buffer)
+static char	*ft_get_line(char *file)
 {
+	char	*buffer;
+	ssize_t	len;
 }
 
-static char	*ft_update_line(char *buffer)
+static char	*ft_update_line(char *file)
 {
+	char	*buffer;
+	ssize_t	len;
 }
