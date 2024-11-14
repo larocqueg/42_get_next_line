@@ -6,7 +6,7 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:40:39 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/14 16:15:38 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:18:33 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*ft_read(int fd, char *file)
 	while (file[i] != '\n' && r_content > 0)
 	{
 		r_content = read(fd, file, BUFFER_SIZE);
-		if (r_content  = -1)
+		if (r_content == -1)
 			return (free(buffer), NULL);
 		buffer[r_content] = '\0';
 		file = ft_strjoin(file, buffer);
