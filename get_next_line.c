@@ -6,7 +6,7 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:40:39 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/14 15:50:48 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:03:32 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ char	*get_next_line(int fd)
 
 static char	*ft_read(int fd, char *file)
 {
-	char	*buffer;
-	ssize_t	bytes;
-
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	bytes = 1;
-	while (!ft_strchar(file, '\n') && bytes > 0)
-	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes == -1)
-			return (free(buffer), NULL);
-		buffer[bytes] = '\0';
-		ft_strjoing(buffer, file);
-		if (!file)
-			return (free(buffer), free(file), NULL);
-		free(buffer);
-		return (file);
-	}
 }
 
 static char	*ft_get_line(char *buffer)
