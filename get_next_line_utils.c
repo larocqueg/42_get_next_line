@@ -6,11 +6,21 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:14:57 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/14 17:15:51 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/16 14:16:13 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {
@@ -41,12 +51,43 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	return (NULL);
 }
 
-size_t	ft_strlen(char *str)
+void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (i < n)
+	{
+		((char *)s)[i] = 0;
 		i++;
-	return (i);
+	}
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*dest;
+
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	dest = (void *)malloc(nmemb * size);
+	if (!dest)
+		return (NULL);
+	ft_bzero(dest, nmemb * size);
+	return (dest);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
 }

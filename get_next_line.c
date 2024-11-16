@@ -6,83 +6,126 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:40:39 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/14 17:36:47 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2024/11/16 14:33:15 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_read(int fd, char *buffer);
-static char	*ft_get_line(char *buffer);
-static char	*ft_update_line(char *buffer);
+char	*ft_read_file(int fd, char *file);
+char	*ft_new_line(char *file);
+char	*ft_update_line(char *file);
+char	*ft_strdup(const char *src);
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*file;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_read(fd, buffer);
-	if (!buffer)
+	file = ft_read_file(fd, file);
+	if (!file)
 		return (NULL);
-	line = ft_get_line(buffer);
-	buffer = ft_update_line(buffer);
+	line = ft_new_line(file);
+	file = ft_update_line(file);
 	return (line);
 }
 
-static char	*ft_read(int fd, char *file)
+char	*ft_read_file(int fd, char *file)
 {
-	int		i;
 	char	*buffer;
-	int		r_content;
+	char	*temp;
+	ssize_t	bytes_read;
 
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!file)
+		file = ft_strdup("");
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (NULL);
-	i = 0;
-	r_content = 1;
-	while (r_content > 0)
+		return (free(file), NULL);
+	bytes_read = 1;
+	while (!ft_strchr(file, '\n') && bytes_read > 0)
 	{
-		r_content = read(fd, file, BUFFER_SIZE);
-		if (r_content == -1)
-			return (free(buffer), NULL);
-		buffer[r_content] = '\0';
-		file = ft_strjoin(file, buffer);
-		if (!file)
-			return (free(file), free(buffer), NULL);
-		if (ft_strchr(buffer, '\n'))
-			break ;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (free(buffer), free(file), NULL);
+		buffer[bytes_read] = '\0';
+		temp = ft_strjoin(file, buffer);
+		if (!temp)
+			return (free(buffer), free(file), NULL);
+		free(file);
+		file = temp;
 	}
 	free(buffer);
 	return (file);
 }
 
-static char	*ft_get_line(char *file)
-{
-	char	*buffer;
-	int		len;
-}
-
-static char	*ft_update_line(char *file)
+char	*ft_new_line(char *file)
 {
 	char	*line;
-	int		i;
+	size_t	i;
 
-	i = 0;
-	if (!file[i])
+	if (!file || !*file)
 		return (NULL);
-	while (file[i] || file[i] != '\n')
-		i++;
-	line = ft_calloc(i + 1, sizeof(char));
 	i = 0;
-	while (file[i] || file[i] != '\n')
+	while (file[i] != '\n' && file[i] != '\0')
+		i++;
+	line = ft_calloc(sizeof(char), (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (file[i] != '\n' && file[i] != '\0')
 	{
 		line[i] = file[i];
 		i++;
 	}
 	if (file[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
+		line[i] = '\n';
 	return (line);
+}
+
+char	*ft_update_line(char *file)
+{
+	char	*line;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (file[i] && file[i] != '\n')
+		i++;
+	if (!file[i])
+	{
+		free(file);
+		return (NULL);
+	}
+	i++;
+	line = ft_calloc(sizeof(char), ft_strlen(file) - i + 1);
+	if (!line)
+		return (NULL);
+	j = 0;
+	while (file[i])
+		line[j++] = file[i++];
+	line[j] = '\0';
+	free(file);
+	return (line);
+}
+
+char	*ft_strdup(const char *src)
+{
+	size_t	i;
+	size_t	len;
+	char	*dup;
+
+	len = ft_strlen(src);
+	dup = (char *)malloc(sizeof(char) * (len + 1));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
