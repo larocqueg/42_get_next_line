@@ -1,30 +1,27 @@
-#include <fcntl.h>  // Para a função open()
-#include <stdio.h>  // Para printf()
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "get_next_line.h"
 
-int main(int ac, char **av)
+int main(void)
 {
     int fd;
     char *line;
-	(void)ac;
+    char file[256];
 
-    // Abre o arquivo em modo leitura
-    fd = open(av[1], O_RDONLY);
+    printf("File name: ");
+    scanf("%255s", file);
+    fd = open(file, O_RDONLY);
     if (fd == -1)
     {
-        perror("Erro ao abrir o arquivo");
+        perror("Failed to open the file!");
         return (1);
     }
-
-    // Lê e imprime cada linha
     while ((line = get_next_line(fd)) != NULL)
     {
         printf("%s", line);
         free(line);
     }
-
-    // Fecha o arquivo
     close(fd);
     return (0);
 }
-
