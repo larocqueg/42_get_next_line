@@ -1,4 +1,5 @@
-To test the program use the run.sh and specify the file to be by the get_next_line!
+To test the program use ./run.sh, this script will run all test files inside /files, it will show all otputs with a spleep 1 delay than automatic removes the a.out!
 
-If you want to test one at a time you can compile with cc *.c -D BUFFER_SIZE=n, than
-./a.out "file name"
+If you want to test one at a time:
+cc *.c -D BUFFER_SIZE=n;
+./a.out ./files/"file name"
