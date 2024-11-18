@@ -1,1 +1,1 @@
-cc *.c && clear && ./a.out
+cc *.c && clear && ./a.out ./files/1 && sleep 1 && ./a.out ./files/2 && sleep 1 && ./a.out ./files/3 && sleep 1 && ./a.out ./files/4 && sleep 1 && ./a.out ./files/5 && sleep 1 && ./a.out ./files/6 && sleep 1 && ./a.out ./files/star_wars && sleep 1 && ./a.out ./files/charizard && rm a.out
