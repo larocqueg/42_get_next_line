@@ -23,12 +23,10 @@ int	main(int ac, char **av)
 	(void)ac;
 	fd = open(av[1], O_RDONLY);
 	line = get_next_line(fd);
-	if (line == NULL)
-		return (printf("%s\n", line));
-	else
-		printf("%s", line);
-	free(line);
-	line = get_next_line(fd);
+	if (line == NULL && fd == -1)
+		return (printf("Error reading from file!\n"));
+	else if (line == NULL && fd >= 0)
+		return (printf("%s", line));
 	while (line)
 	{
 		printf("%s", line);
@@ -36,6 +34,5 @@ int	main(int ac, char **av)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	printf("\n");
 	return (0);
 }
