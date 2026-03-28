@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:46:30 by gabriel           #+#    #+#             */
-/*   Updated: 2026/03/28 17:57:49 by gabriel          ###   ########.fr       */
+/*   Updated: 2026/03/28 18:00:49 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ typedef struct s_gnl
 	char			*curr;
 	struct s_gnl	*next;
 }	t_gnl;
+
 #endif
