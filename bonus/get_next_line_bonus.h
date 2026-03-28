@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:46:30 by gabriel           #+#    #+#             */
-/*   Updated: 2026/03/28 18:00:49 by gabriel          ###   ########.fr       */
+/*   Updated: 2026/03/28 18:02:33 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@
 #  define BUFFER_SIZE 42
 # endif
 
+// fd is the file descriptor;
+// str is the string that holds the content read from the file;
+// next is a pointer to the next node in the linked list.
 typedef struct s_gnl
 {
 	int				fd;
-	char			*curr;
+	char			*str;
 	struct s_gnl	*next;
 }	t_gnl;
 
