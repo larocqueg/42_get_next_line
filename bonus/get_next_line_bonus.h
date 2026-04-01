@@ -6,7 +6,7 @@
 /*   By: gabriel <gabriel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:46:30 by gabriel           #+#    #+#             */
-/*   Updated: 2026/03/28 18:02:33 by gabriel          ###   ########.fr       */
+/*   Updated: 2026/04/01 17:21:00 by gabriel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 // buffer_size definition
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# endif
+// MAX_FD definition
+# ifndef MAX_FD
+#  define MAX_FD 1024
 # endif
 
 // fd is the file descriptor;
